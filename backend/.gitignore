@@ -1,0 +1,27 @@
+venv
+# Entornos Virtuales (venvs)
+venv/
+.venv/
+env/
+ENV/
+bin/
+lib/
+include/
+share/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Bases de datos locales (SQLAlchemy / SQLModel)
+*.db
+*.sqlite3
+*.sqlite
+
+# Variables de entorno (Configuraciones sensibles)
+.env
+
+# IDEs (Opcional, pero recomendado)
+.vscode/
+.idea/
