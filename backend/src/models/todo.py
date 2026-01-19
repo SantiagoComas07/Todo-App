@@ -3,18 +3,27 @@ from sqlmodel import Field, SQLModel
 from enum import Enum
 
 
-#class Hero(SQLModel, table=True):
-    # id: Optional[int] = Field(default=None, primary_key=True)
-    # name: str
-    # secret_name: str
-    # age: Optional[int] = None
-
+# Enums
 class Status(str, Enum):
     pending = "pending"
     completed = "completed"
 
 
+
+# Validations
+
+class Task(SQLModel):
+    description: str | None = None
+
+class Task_update(SQLModel):
+    description: str | None = None
+    status: Status
+
+
+
+
+# Database
 class Todo(SQLModel, table=True):
-    id: int | None = Field(default_factory=uuid, primary_Key=True, nullable=False)
-    description = str | None = None
-    status = Status = Field(default=Status.pending)
+    id: str | None = Field(default_factory=lambda: str(uuid()), primary_key=True, nullable=False)
+    description: str | None = None
+    status: Status = Field(default=Status.pending)
