@@ -1,8 +1,10 @@
 from fastapi import HTTPException
 from sqlmodel import Session, select
-from ..models import Todo, Task
+from ..models import Todo, Task, Task_update
 from ..db import engine
 from sqlalchemy.exc import SQLAlchemyError
+from .task import TaskProcessDb
+
 
 
 # Create 
@@ -13,9 +15,8 @@ def create_task(task:Task):
 
     with Session(engine) as session:
         try:
-            session.add(db_task)
-            session.commit()
-            session.refresh(db_task)
+            task_db = TaskProcessDb(session)  
+            task_db.add(db_task)              
             return {"message": "The task has been successfully created", "task": db_task}  
         except  SQLAlchemyError as e:
             session.rollback()
@@ -63,10 +64,8 @@ def update_task(task_id, data):
         # extratc new changes
         new_data = data.model_dump(exclude_unset=True)
         # update the data in the database
-        result.sqlmodel_update(new_data)
-        session.add(result)
-        session.commit()
-        session.refresh(result)
+        task_db = TaskProcessDb(session)
+        task_db.update_task(result, new_data)
 
         return result
     except SQLAlchemyError as e:
@@ -85,8 +84,8 @@ def delete_task(task_id):
         result = find_task(task_id)
         if not result:
             return None
-        session.delete(result)
-        session.commit()
+        task_db = TaskProcessDb(session)
+        task_db.update(result)
         return {"message": "The Task has been deleted successfully"}
     except SQLAlchemyError as e:
         session.rollback()

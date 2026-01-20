@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from .db import init_db
+from src.db import init_db
 from src.models import Task, Task_update
 from src.crud import create_task, get_all_tasks, find_task, update_task, delete_task
 from uuid import UUID
