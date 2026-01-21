@@ -6,6 +6,9 @@ from sqlalchemy.exc import SQLAlchemyError
 from .task import TaskProcessDb
 
 
+task_db = TaskProcessDb(session=Session(engine))
+
+
 
 # Create 
 
@@ -14,8 +17,7 @@ def create_task(task:Task):
     db_task = Todo(**task.model_dump())
 
     with Session(engine) as session:
-        try:
-            task_db = TaskProcessDb(session)  
+        try:  
             task_db.add(db_task)              
             return {"message": "The task has been successfully created", "task": db_task}  
         except  SQLAlchemyError as e:
@@ -64,7 +66,6 @@ def update_task(task_id, data):
         # extratc new changes
         new_data = data.model_dump(exclude_unset=True)
         # update the data in the database
-        task_db = TaskProcessDb(session)
         task_db.update_task(result, new_data)
 
         return result
@@ -84,8 +85,7 @@ def delete_task(task_id):
         result = find_task(task_id)
         if not result:
             return None
-        task_db = TaskProcessDb(session)
-        task_db.update(result)
+        task_db.delete_task(result)
         return {"message": "The Task has been deleted successfully"}
     except SQLAlchemyError as e:
         session.rollback()

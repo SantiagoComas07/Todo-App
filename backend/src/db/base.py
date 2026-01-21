@@ -5,16 +5,17 @@ class BaseRepository:
     def __init__(self, session: Session):
         self.sesion = session
     def add(self, obj):
-        self.session.add(obj)
-        self.session.commit()
-        self.session.refresh(obj)
+        self.sesion.add(obj)
+        self.sesion.commit()
+        self.sesion.refresh(obj)
         return obj
     def delete(self, obj):
-        self.session.delete(obj)
-        self.session.commit()
+        self.sesion.delete(obj)
+        self.sesion.commit()
     def update(self, obj, data:dict):
-        obj.sqlmodel.update(data)
-        self.session.add(obj)
-        self.session.commit()
-        self.session.refresh()
+        for key, value in data.items():
+            setattr(obj, key, value)
+        self.sesion.add(obj)
+        self.sesion.commit()
+        self.sesion.refresh(obj)
         return obj
