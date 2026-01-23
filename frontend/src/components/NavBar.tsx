@@ -1,6 +1,6 @@
 
 import { AppBar, Toolbar, Typography, Button, Box} from '@mui/material'
-
+import {Link} from 'react-router-dom'
 
 export const NavBar = () =>{
     return(<>
@@ -11,9 +11,9 @@ export const NavBar = () =>{
             ToDo App
           </Typography>
           <Box className="flex gap-3">
-            <Button sx={{backgroundColor:"secondary.main"}} >Tasks</Button>
-            <Button sx={{backgroundColor:"secondary.main"}} >Charts</Button>
-            <Button sx={{backgroundColor:"secondary.main"}}>Resources</Button>
+            <Button component={Link} to="/" sx={{backgroundColor:"secondary.light"}} >Tasks</Button>
+            <Button component={Link} to="/charts" sx={{backgroundColor:"secondary.light"}} >Charts</Button>
+            <Button component={Link} to="/resources" sx={{backgroundColor:"secondary.light"}}>Resources</Button>
           </Box>
         </Toolbar>
       </AppBar>

@@ -13,9 +13,11 @@ class Status(str, Enum):
 # Validations
 
 class Task(SQLModel):
+    title: str
     description: str | None = None
 
 class Task_update(SQLModel):
+    title: str
     description: str | None = None
     status: Status
 
@@ -25,5 +27,6 @@ class Task_update(SQLModel):
 # Database
 class Todo(SQLModel, table=True):
     id: str | None = Field(default_factory=lambda: str(uuid()), primary_key=True, nullable=False)
+    title: str
     description: str | None = None
     status: Status = Field(default=Status.pending)
