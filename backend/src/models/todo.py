@@ -15,6 +15,7 @@ class Status(str, Enum):
 class Task(SQLModel):
     title: str
     description: str | None = None
+    status: Status
 
 class Task_update(SQLModel):
     title: str

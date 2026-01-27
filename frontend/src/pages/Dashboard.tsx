@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material"
-import { PieChart } from '@mui/x-charts/PieChart';
+// import { PieChart } from '@mui/x-charts/PieChart';
 
 
-export const Charts = () =>{
+export const Dashboard = () =>{
 
 
 
