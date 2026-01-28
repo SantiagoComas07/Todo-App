@@ -13,7 +13,7 @@ export const NavBar = () =>{
           <Box className="flex gap-3">
             <Button component={Link} to="/" sx={{backgroundColor:"secondary.light"}} >Tasks</Button>
             <Button component={Link} to="/charts" sx={{backgroundColor:"secondary.light"}} >Charts</Button>
-            <Button component={Link} to="/resources" sx={{backgroundColor:"secondary.light"}}>Resources</Button>
+            <Button component={Link} to="/documentation" sx={{backgroundColor:"secondary.light"}}>Documentation</Button>
           </Box>
         </Toolbar>
       </AppBar>

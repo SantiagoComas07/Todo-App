@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { TaskView } from '../pages/TaskView.tsx'
 import { Layout } from '../Layout/Layout.tsx'
 import { Dashboard } from '../pages/Dashboard.tsx'
+import { Documentation } from '../pages/Documentation.tsx'
 
 
 
@@ -13,6 +14,7 @@ export const AppRouter = () =>{
                 <Route  element={<Layout/>}>
                     <Route path="/" element={<TaskView />} />
                     <Route path="/charts"  element={<Dashboard />}/>
+                    <Route path="/documentation"  element={<Documentation />}/>
                 </Route>
             </Routes>
         </BrowserRouter>
